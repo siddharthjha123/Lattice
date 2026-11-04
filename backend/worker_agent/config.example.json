@@ -1,0 +1,11 @@
+{
+  "control_plane_url": "http://127.0.0.1:8000",
+  "worker_id": "W-001",
+  "max_containers": 4,
+  "max_cpu_cores": 2,
+  "max_ram_gb": 4,
+  "max_storage_gb": 16,
+  "deployment_storage_gb": 1,
+  "heartbeat_interval": 5,
+  "stop_on_disconnect": false
+}

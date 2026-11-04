@@ -1,0 +1,7 @@
+node_modules/
+.next/
+pnpm-lock.yaml
+public/
+src/app/icon.png
+src/app/favicon.ico
+src/components/ui/LatticeLoader.tsx

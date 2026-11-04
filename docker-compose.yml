@@ -1,0 +1,33 @@
+# Local development only. Run the Python controller and workers on the host.
+# The registry binds inside the Docker daemon's host network. This also avoids
+# Docker Desktop's distinction between the Mac loopback and daemon VM loopback.
+services:
+  postgres:
+    image: public.ecr.aws/docker/library/postgres:17-alpine
+    environment:
+      POSTGRES_USER: lattice
+      POSTGRES_DB: lattice
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a fresh POSTGRES_PASSWORD}
+    ports:
+      - "127.0.0.1:5432:5432"
+    cpus: 0.5
+    mem_limit: 512m
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U lattice -d lattice"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  registry:
+    image: public.ecr.aws/docker/library/registry:2
+    network_mode: host
+    environment:
+      REGISTRY_HTTP_ADDR: 127.0.0.1:5050
+    cpus: 0.25
+    mem_limit: 256m
+    volumes:
+      - registry_data:/var/lib/registry
+volumes:
+  postgres_data:
+  registry_data:

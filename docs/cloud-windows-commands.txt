@@ -1,0 +1,5 @@
+# Replace api.example.com with your controller; enter the join code privately.
+$LatticeCli = Join-Path $env:LOCALAPPDATA 'Lattice\venv\Scripts\lattice.exe'
+$LatticeState = Join-Path $env:USERPROFILE '.lattice\pools\development'
+& $LatticeCli connect --server https://api.example.com --pool-name development --state-dir $LatticeState
+& $LatticeCli status --state-dir $LatticeState

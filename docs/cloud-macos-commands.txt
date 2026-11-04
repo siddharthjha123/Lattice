@@ -1,0 +1,3 @@
+# Replace api.example.com with your controller; enter the join code privately.
+lattice connect --server https://api.example.com --pool-name development --state-dir ~/.lattice/pools/development
+lattice status --state-dir ~/.lattice/pools/development
